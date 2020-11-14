@@ -10,7 +10,7 @@
         <script>
             const roomname = JSON.parse(document.getElementById('room-name').textContent);
             const input = document.querySelector('#chat-input');
-            const socket = new WebSocket('ws://'+window.location.host+'/ws/chat/'+roomname+'/');
+            const socket = new WebSocket('wss://'+window.location.host+'/ws/chat/'+roomname+'/');
             socket.onmessage = (e)=>{
                 document.querySelector('#chat-area').value += (JSON.parse(e.data) + '\n');
             }
