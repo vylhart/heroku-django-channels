@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <textarea name="" id="chat-area" cols="30" rows="10"></textarea>
+        <input type="text" id="chat-input">
+        <input type="button" value="Send" id="chat-submit">
+        {{ room_name|json_script:"room-name" }}
+        <script>
+            const roomname = JSON.parse(document.getElementById('room-name').textContent);
+            const input = document.querySelector('#chat-input');
+            const socket = new WebSocket('ws://'+window.location.host+'/ws/chat/'+roomname+'/');
+            socket.onmessage = (e)=>{
+                document.querySelector('#chat-area').value += (JSON.parse(e.data) + '\n');
+            }
+            socket.onclose = (e)=>{
+                console.error('Socket closed');
+            }
+            document.querySelector('#chat-submit').onclick = (e)=>{
+                socket.send(JSON.stringify({'message':input.value}));
+            };
+            input.value='';
+        </script>
+    </body>
+</html>

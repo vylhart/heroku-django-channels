@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <input type="text" name="" id="room-name">
+        <br>
+        <input type="button" value="Enter" id="room-submit">
+        
+        <script>
+            document.querySelector('#room-submit').onclick = (e)=>{
+                var roomname = document.querySelector('#room-name').value;
+                window.location.pathname = '/chat/' + roomname + '/';
+                console.log(roomname);
+            }
+        </script>
+
+    </body>
+</html>

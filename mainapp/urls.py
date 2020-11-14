@@ -9,4 +9,5 @@ import hello.views
 urlpatterns = [
     path("", hello.views.index, name="index"),
     path("admin/", admin.site.urls),
+    path("chat/", include('chat.urls')),
 ]

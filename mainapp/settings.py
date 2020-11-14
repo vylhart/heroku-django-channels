@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -42,10 +43,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "mainapp.urls"
 
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATES_DIR,],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -60,6 +62,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "mainapp.wsgi.application"
 
+
+ASGI_APPLICATION = 'mysite.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
