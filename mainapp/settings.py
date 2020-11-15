@@ -27,8 +27,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "hello",
+    "channels",
     "chat",
+    "hello",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "mainapp.wsgi.application"
 
 
-ASGI_APPLICATION = 'mysite.asgi.application'
+ASGI_APPLICATION = 'mainapp.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
